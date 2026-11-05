@@ -27,11 +27,11 @@ CREATE TABLE category (
 -- ========================================
 CREATE TABLE project (
     project_id SERIAL PRIMARY KEY,
-    name VARCHAR(150) NOT NULL,
-    description TEXT NOT NULL,
-    start_date DATE NOT NULL,
-    end_date DATE,
     organization_id INTEGER NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    description TEXT NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    project_date DATE NOT NULL,
     CONSTRAINT fk_project_organization
         FOREIGN KEY (organization_id)
         REFERENCES organization(organization_id)
@@ -77,25 +77,50 @@ VALUES
 -- ========================================
 -- Insert sample data: Projects
 -- ========================================
-INSERT INTO project (name, description, start_date, end_date, organization_id)
+-- 5 projects for BrightFuture Builders
+INSERT INTO project (organization_id, title, description, location, project_date)
 VALUES
-('Park Cleanup Initiative', 'A neighborhood cleanup event to remove litter and improve public green spaces.', '2026-11-10', '2026-11-12', 1),
-('Community Garden Expansion', 'A hands-on urban gardening effort to grow fresh produce and teach sustainable farming.', '2026-11-15', '2026-12-10', 2),
-('After-School Tutoring Program', 'Volunteer tutors help students improve reading, math, and STEM confidence.', '2026-11-20', '2027-05-15', 3),
-('Winter Food Drive', 'Collecting and distributing essential food items for families in need.', '2026-12-01', '2026-12-20', 3),
-('Wellness Fair Outreach', 'Supporting local health education and wellness screenings for underserved residents.', '2026-11-30', '2026-12-05', 1),
-('Youth Leadership Workshop', 'A community-based leadership workshop designed to build confidence and civic engagement.', '2026-12-08', '2026-12-18', 2);
+(1, 'Park Cleanup Initiative', 'A neighborhood cleanup event to remove litter and improve public green spaces.', 'Riverside Community Park', '2026-11-10'),
+(1, 'Senior Meal Delivery Day', 'Preparing and delivering warm meals to senior citizens in our community.', 'Maple Street Center', '2026-11-14'),
+(1, 'Youth STEM Workshop', 'Hands-on science and technology activities helping students build confidence and curiosity.', 'Oakview Middle School', '2026-11-21'),
+(1, 'Tree Planting Day', 'Planting native trees to improve air quality and reduce urban heat.', 'Lakeside Trail', '2026-12-02'),
+(1, 'Holiday Food Drive', 'Collecting and distributing pantry staples for local families during the holidays.', 'Downtown Community Hall', '2026-12-10');
+
+-- 5 projects for GreenHarvest Growers
+INSERT INTO project (organization_id, title, description, location, project_date)
+VALUES
+(2, 'Community Garden Expansion', 'Expanding urban garden beds to increase local food production and education.', 'Northside Urban Farm', '2026-11-15'),
+(2, 'Neighborhood Recycling Drive', 'Collecting reusable materials and educating residents on waste reduction.', 'Elm Street Plaza', '2026-11-18'),
+(2, 'Free Health Screening Event', 'Partnering with local providers to offer screenings and wellness guidance.', 'Central Community Center', '2026-11-25'),
+(2, 'School Nutrition Program', 'Building and maintaining garden plots to support classroom nutrition lessons.', 'Lakeview Academy', '2026-12-03'),
+(2, 'Bike Repair Clinic', 'Teaching basic bike maintenance skills and helping residents repair transportation.', 'Old Town Square', '2026-12-09');
+
+-- 5 projects for UnityServe Volunteers
+INSERT INTO project (organization_id, title, description, location, project_date)
+VALUES
+(3, 'After-School Tutoring Program', 'Volunteer tutors help students improve reading, math, and STEM confidence.', 'Westview Learning Center', '2026-11-20'),
+(3, 'Shelter Supply Drive', 'Collecting essentials for families and individuals experiencing homelessness.', 'City Rescue Center', '2026-11-27'),
+(3, 'Senior Tech Help Sessions', 'Teaching older adults how to use phones, tablets, and online services safely.', 'Cedar Public Library', '2026-12-01'),
+(3, 'Volunteer Mentor Match', 'Connecting youth with caring mentors for academic and life support.', 'Lakewood High School', '2026-12-07'),
+(3, 'Community Art Day', 'A public art event bringing neighbors together through creative expression and mural work.', 'Old Town Plaza', '2026-12-13');
 
 -- ========================================
 -- Associate projects with categories
 -- ========================================
 INSERT INTO project_category (project_id, category_id)
 VALUES
-(1, 1),
-(1, 3),
-(2, 1),
-(3, 2),
-(4, 3),
-(5, 4),
-(6, 2),
-(6, 3);
+(1, 1), (1, 3),
+(2, 3), (2, 4),
+(3, 2), (3, 3),
+(4, 1),
+(5, 3),
+(6, 1), (6, 3),
+(7, 1), (7, 4),
+(8, 1), (8, 3),
+(9, 2), (9, 3),
+(10, 1), (10, 3),
+(11, 2), (11, 3),
+(12, 3), (12, 4),
+(13, 2), (13, 3),
+(14, 2), (14, 3),
+(15, 3), (15, 4);

@@ -7,14 +7,10 @@
     <ul>
         <% projects.forEach(project => { %>
             <li>
-                <strong><%= project.name %></strong><br>
+                <strong><%= new Date(project.project_date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) %>: <%= project.title %> (<%= project.organization_name %>)</strong><br>
                 <%= project.description %><br>
-                Organization: <%= project.organization_name %><br>
-                Categories: <%= project.category_names || 'None' %><br>
-                Dates: <%= new Date(project.start_date).toLocaleDateString() %>
-                <% if (project.end_date) { %>
-                    - <%= new Date(project.end_date).toLocaleDateString() %>
-                <% } %>
+                Location: <%= project.location %><br>
+                Categories: <%= project.category_names || 'None' %>
             </li>
         <% }); %>
     </ul>
