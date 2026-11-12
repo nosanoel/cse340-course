@@ -1,16 +1,25 @@
 <%- include('partials/header') %>
 
+<!-- Main content area for the upcoming projects page. -->
 <main class="projects-page">
     <h1><%= title %></h1>
 
+    <!-- Show a heading and then loop through each upcoming project. -->
     <h2>Upcoming Service Projects</h2>
     <ul>
         <% projects.forEach(project => { %>
             <li>
-                <strong><%= new Date(project.project_date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) %>: <%= project.title %> (<%= project.organization_name %>)</strong><br>
-                <%= project.description %><br>
-                Location: <%= project.location %><br>
-                Categories: <%= project.category_names || 'None' %>
+                <!-- Each project title links to its own details page. -->
+                <a href="/project/<%= project.project_id %>">
+                    <strong><%= new Date(project.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) %>: <%= project.title %></strong>
+                </a>
+                <br>
+                <!-- Link the organization name to the organization detail page. -->
+                Organization: <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a>
+                <br>
+                <%= project.description %>
+                <br>
+                Location: <%= project.location %>
             </li>
         <% }); %>
     </ul>

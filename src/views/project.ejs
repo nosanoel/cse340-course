@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<!-- Main content area for a single project details page. -->
+<main>
+    <h1><%= title %></h1>
+
+    <% if (project) { %>
+        <!-- Display the selected project's core details. -->
+        <h2><%= project.title %></h2>
+        <p><strong>Description:</strong> <%= project.description %></p>
+        <p><strong>Date:</strong> <%= new Date(project.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+        <p><strong>Location:</strong> <%= project.location %></p>
+        <p><strong>Organization:</strong> <a href="/organization/<%= project.organization_id %>"><%= project.organization_name %></a></p>
+
+        <!-- Show category tags for the project and link each tag to its category details page. -->
+        <p><strong>Categories:</strong>
+            <% categories.forEach((category, index) => { %>
+                <a href="/category/<%= category.category_id %>"><%= category.name %></a><% if (index < categories.length - 1) { %>, <% } %>
+            <% }); %>
+        </p>
+    <% } else { %>
+        <!-- Fallback message if no project was found for the requested ID. -->
+        <p>Project not found.</p>
+    <% } %>
+</main>
+
+<%- include('partials/footer') %>

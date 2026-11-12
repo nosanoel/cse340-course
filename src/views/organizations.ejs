@@ -1,4 +1,3 @@
-
 <%- include('partials/header') %>
 
 <main class="organizations-page">
@@ -12,7 +11,7 @@
                     src="/images/<%= organization.logo_filename %>" 
                     alt="<%= organization.name %> logo"
                 >
-                <strong><%= organization.name %></strong>: 
+                <a href="/organization/<%= organization.organization_id %>"><%= organization.name %></a>: 
                 <%= organization.contact_email %>
             </li>
         <% }); %>

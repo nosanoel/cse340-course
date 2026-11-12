@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<!-- Main content area for the category details page. -->
+<main>
+    <h1><%= title %></h1>
+
+    <% if (category) { %>
+        <h2><%= category.name %></h2>
+
+        <h3>Service Projects</h3>
+        <ul>
+            <% projects.forEach(project => { %>
+                <li>
+                    <a href="/project/<%= project.project_id %>"><%= project.title %></a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Category not found.</p>
+    <% } %>
+</main>
+
+<%- include('partials/footer') %>

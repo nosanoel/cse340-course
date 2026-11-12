@@ -1,13 +1,15 @@
 <%- include('partials/header') %>
 
+<!-- Main content for the categories page. -->
 <main class="categories-page">
     <h1><%= title %></h1>
     <p>Explore the different categories of volunteer opportunities.</p>
 
+    <!-- Loop through each category and link it to its detail page. -->
     <section class="categories">
         <% categories.forEach(category => { %>
             <div class="category">
-                <h2><%= category.name %></h2>
+                <h2><a href="/category/<%= category.category_id %>"><%= category.name %></a></h2>
             </div>
         <% }); %>
     </section>

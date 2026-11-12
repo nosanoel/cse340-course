@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<!-- Main content area for the organization details page. -->
+<main>
+    <h1><%= title %></h1>
+
+    <!-- Display the organization name and logo. -->
+    <h2><%= organizationDetails.name %></h2>
+    <img src="/images/<%= organizationDetails.logo_filename %>" alt="<%= organizationDetails.name %> logo">
+
+    <!-- Show the description for the selected organization. -->
+    <p>Description: <%= organizationDetails.description %></p>
+
+    <!-- List each service project associated with this organization. -->
+    <h3>Service Projects</h3>
+    <ul>
+        <% projects.forEach(project => { %>
+            <li><a href="/project/<%= project.project_id %>"><%= project.title %></a></li>
+        <% }) %>
+    </ul>
+</main>
+
+<%- include('partials/footer') %>
