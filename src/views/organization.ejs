@@ -11,6 +11,9 @@
     <!-- Show the description for the selected organization. -->
     <p>Description: <%= organizationDetails.description %></p>
 
+    <!-- Allow users to open the edit form for this organization. -->
+    <p><a href="/edit-organization/<%= organizationDetails.organization_id %>">Edit Organization</a></p>
+
     <!-- List each service project associated with this organization. -->
     <h3>Service Projects</h3>
     <ul>

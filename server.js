@@ -1,4 +1,7 @@
+import 'dotenv/config';
 import express from 'express';
+import session from 'express-session';
+import flash from './src/middleware/flash.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
@@ -16,6 +19,9 @@ const __dirname = path.dirname(__filename);
 
 // Create the Express application instance.
 const app = express();
+
+// Load the secret used to sign session cookies.
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 /**
   * Configure Express middleware
@@ -43,6 +49,26 @@ app.use((req, res, next) => {
     res.locals.NODE_ENV = NODE_ENV;
     next();
 });
+
+// Allow Express to receive and process common POST data.
+// Parse form submissions and JSON bodies so submitted values are available in req.body.
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Configure express-session middleware for managing user sessions.
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false, // Don't save session if unmodified
+  saveUninitialized: true, // Create a session even if no data is stored
+  cookie: {
+    secure: NODE_ENV === 'production', // Use secure cookies in production
+    httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
+    maxAge: 60 * 60 * 1000 // Set cookie expiration to 1 hour
+  }
+}));
+
+// Initialize flash middleware for displaying temporary messages to users.
+app.use(flash);
 
 // Use the route definitions from src/routes.js to handle application endpoints.
 app.use(router);
