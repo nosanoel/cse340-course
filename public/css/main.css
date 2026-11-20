@@ -682,3 +682,184 @@ footer a:hover {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* ========================================
+   FORM PAGES
+======================================== */
+
+.form-page {
+    max-width: 760px;
+}
+
+.form-page-heading {
+    margin-bottom: 28px;
+}
+
+.form-page-heading h1 {
+    margin-bottom: 10px;
+}
+
+.form-page-heading p:last-child {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--grey);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.styled-form {
+    display: grid;
+    gap: 22px;
+
+    padding: clamp(24px, 5vw, 40px);
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--black);
+    border-radius: var(--radius-large);
+    box-shadow: var(--shadow-hover);
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 800;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    border: 1px solid #bdbdbd;
+    border-radius: var(--radius-small);
+
+    background: var(--white);
+    color: var(--text);
+
+    font: inherit;
+    line-height: 1.5;
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+.form-group input,
+.form-group select {
+    min-height: 48px;
+    padding: 10px 13px;
+}
+
+.form-group textarea {
+    min-height: 140px;
+    padding: 12px 13px;
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #777777;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: #777777;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--black);
+    box-shadow: 0 0 0 3px rgb(17 17 17 / 10%);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 4px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+}
+
+form button,
+.secondary-button {
+    min-height: 46px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 18px;
+
+    border-radius: var(--radius-small);
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+
+    transition:
+        color var(--transition),
+        background-color var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+}
+
+form button {
+    border: 1px solid var(--black);
+    background: var(--black);
+    color: var(--white);
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #333333;
+}
+
+.secondary-button {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--black);
+}
+
+.secondary-button:hover {
+    background: var(--light-grey);
+    color: var(--black);
+}
+
+@media (hover: hover) {
+    form button:hover,
+    .secondary-button:hover {
+        transform: translateY(-2px);
+    }
+}
+
+@media (max-width: 480px) {
+    .styled-form {
+        padding: 20px;
+    }
+
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    form button,
+    .secondary-button {
+        width: 100%;
+    }
+}

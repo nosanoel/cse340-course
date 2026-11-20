@@ -1,10 +1,12 @@
 <%- include('partials/header') %>
-<main>
-    <!-- Page title identifies the purpose of this form. -->
-    <h1><%= title %></h1>
+<main class="form-page new-organization-page">
+    <div class="form-page-heading">
+        <p class="eyebrow">Organization Directory</p>
+        <h1><%= title %></h1>
+        <p>Add an organization to the service network.</p>
+    </div>
 
-    <!-- Submitting this form sends its field values to the POST route. -->
-    <form action="/new-organization" method="POST">
+    <form class="styled-form" action="/new-organization" method="POST">
         <div class="form-group">
             <label for="name">Organization Name</label>
             <input
@@ -13,6 +15,7 @@
                 name="name"
                 required
                 maxlength="150"
+                placeholder="e.g. Community Food Network"
             />
         </div>
 
@@ -23,6 +26,8 @@
                 name="description"
                 required
                 maxlength="500"
+                rows="5"
+                placeholder="Describe the organization's mission and community work"
             ></textarea>
         </div>
 
@@ -33,10 +38,14 @@
                 id="contactEmail"
                 name="contactEmail"
                 required
+                placeholder="contact@organization.org"
             />
         </div>
 
-        <button type="submit">Create Organization</button>
+        <div class="form-actions">
+            <a class="secondary-button" href="/organizations">Cancel</a>
+            <button type="submit">Create Organization</button>
+        </div>
     </form>
 </main>
 <%- include('partials/footer') %>
